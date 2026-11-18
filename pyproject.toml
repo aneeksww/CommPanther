@@ -1,0 +1,51 @@
+[build-system]
+requires = ["setuptools>=68.0", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "commpanther"
+version = "0.1.0"
+description = "AI-powered email assistant for Windows"
+readme = "README.md"
+requires-python = ">=3.14"
+license = { text = "MIT" }
+authors = [
+    { name = "Developer C", email = "dev.c@commpanther.local" },
+]
+keywords = ["email", "ai", "gmail", "automation", "windows"]
+
+dependencies = [
+    "customtkinter>=5.2.0",
+    "google-api-python-client>=2.100.0",
+    "google-auth-oauthlib>=1.2.0",
+    "google-auth>=2.29.0",
+    "google-auth-httplib2>=0.2.0",
+    "sqlalchemy>=2.0.0",
+    "psycopg2-binary>=2.9.0",
+    "structlog>=24.0.0",
+    "pydantic>=2.7.0", # Для строгой валидации моделей данных
+    "httpx>=0.27.0",   # Современный async HTTP клиент для LLM API
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=8.0.0",
+    "pytest-asyncio>=0.23.0",
+    "ruff>=0.4.0",     # Линтер и форматтер
+    "mypy>=1.10.0",    # Проверка типов
+]
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.ruff]
+line-length = 100
+target-version = "py314"
+select = ["E", "F", "I", "N", "W"]
+
+[tool.mypy]
+python_version = "3.14"
+strict = true
+warn_return_any = true
+warn_unused_configs = true
+disallow_untyped_defs = true
